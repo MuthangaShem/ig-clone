@@ -15,12 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from insta_app.views import index, login, logout, signup
 
 urlpatterns = [
-    '',
-    url(r'^$', 'ribbit_app.views.index'),  # root
-    url(r'^login$', 'ribbit_app.views.login_view'),  # login
-    url(r'^logout$', 'ribbit_app.views.logout_view'),  # logout
-    url(r'^signup$', 'ribbit_app.views.signup'),  # signup
+    url(r'^$', index, name='home'),  # root
+    url(r'^login$', login, name='login'),  # login
+    url(r'^logout$', logout, name='logout'),  # logout
+    url(r'^signup$', signup, name='signup'),  # signup
     url(r'^admin/', admin.site.urls),
 ]
