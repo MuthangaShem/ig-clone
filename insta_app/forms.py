@@ -38,7 +38,7 @@ class AuthenticateForm(AuthenticationForm):
         return form
 
 
-class RibbitForm(forms.ModelForm):
+class PostForm(forms.ModelForm):
     image = forms.ImageField(required=True,)
     content = forms.CharField(required=True, widget=forms.widgets.Textarea(attrs={'class': 'InstaText'}))
 
