@@ -5,7 +5,7 @@ import hashlib
 # Create your models here.
 
 
-class Post(models.Models):
+class Post(models.Model):
     image = models.ImageField()
     caption = models.CharField(max_length=140)
     user = models.ForeignKey(User)
