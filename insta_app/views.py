@@ -41,3 +41,8 @@ def login_view(request):
             # Failure
             return index(request, auth_form=form)
     return redirect('/')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
