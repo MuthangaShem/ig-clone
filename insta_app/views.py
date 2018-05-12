@@ -28,3 +28,16 @@ def index(request, auth_form=None, user_form=None):
         return render(request,
                       'home.html',
                       {'auth_form': auth_form, 'user_form': user_form, })
+
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticateForm(data=request.POST)
+        if form.is_valid():
+            login(request, form.get_user())
+            # Success
+            return redirect('/')
+        else:
+            # Failure
+            return index(request, auth_form=form)
+    return redirect('/')
