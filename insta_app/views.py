@@ -3,8 +3,11 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
+
 from insta_app.forms import AuthenticateForm, UserCreateForm, PostForm
 from insta_app.models import Post
+
 # Create your views here.
 
 
@@ -116,3 +119,15 @@ def users(request, username="", post_form=None):
                   {'obj': obj, 'next_url': '/users/',
                    'post_form': post_form,
                    'username': request.user.username, })
+
+
+def follow(request):
+    if request.method == "POST":
+        follow_id = request.POST.get('follow', False)
+        if follow_id:
+            try:
+                user = User.objects.get(id=follow_id)
+                request.user.profile.follows.add(user.profile)
+            except ObjectDoesNotExist:
+                return redirect('/users/')
+    return redirect('/users/')
