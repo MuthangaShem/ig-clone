@@ -58,6 +58,5 @@ def signup(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('/')
-        else:
-            return index(request, user_form=user_form)
+git             return index(request, user_form=user_form)
     return redirect('/')
