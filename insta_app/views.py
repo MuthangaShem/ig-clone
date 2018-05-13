@@ -95,3 +95,24 @@ def get_latest(user):
         return ""
 
 
+def users(request, username="", post_form=None):
+    if username:
+        # Show a profile
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            raise Http404
+        posts = Post.objects.filter(user=user.id)
+        if username == request.user.username or request.user.profile.follows.filter(user__username=username):
+            # Self Profile or buddies' profile
+            return render(request, 'user.html', {'user': user, 'posts': posts, })
+        return render(request, 'user.html', {'user': user, 'posts': posts, 'follow': True, })
+    users = User.objects.all().annotate(post_count=Count('post'))
+    posts = map(get_latest, users)
+    obj = zip(users, posts)
+    post_form = post_form or PostForm()
+    return render(request,
+                  'profiles.html',
+                  {'obj': obj, 'next_url': '/users/',
+                   'post_form': post_form,
+                   'username': request.user.username, })
