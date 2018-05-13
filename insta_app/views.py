@@ -58,5 +58,29 @@ def signup(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('/')
-git             return index(request, user_form=user_form)
+        else:
+            return index(request, user_form=user_form)
     return redirect('/')
+
+
+def submit(request):
+    if request.method == "POST":
+        post_form = PostForm(data=request.POST)
+        next_url = request.POST.get("next_url", "/")
+        if post_form.is_valid():
+            post = post_form.save(commit=False)
+            post.user = request.user
+            post.save()
+            return redirect(next_url)
+        else:
+            return public(request, post_form)
+    return redirect('/')
+
+
+def public(request, post_form=None):
+    post_form = post_form or PostForm()
+    posts = Post.objects.reverse()[:10]
+    return render(request,
+                  'public.html',
+                  {'post_form': post_form, 'next_url': '/posts',
+                   'posts': posts, 'username': request.user.username})
