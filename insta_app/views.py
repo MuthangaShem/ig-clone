@@ -1,3 +1,5 @@
+from django.db.models import Count
+from django.http import Http404
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
@@ -84,3 +86,12 @@ def public(request, post_form=None):
                   'public.html',
                   {'post_form': post_form, 'next_url': '/posts',
                    'posts': posts, 'username': request.user.username})
+
+
+def get_latest(user):
+    try:
+        return user.post_set.order_by('-id')[0]
+    except IndexError:
+        return ""
+
+
