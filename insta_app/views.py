@@ -72,11 +72,12 @@ def submit(request):
     if request.method == "POST":
         post_form = PostForm(data=request.POST)
         next_url = request.POST.get("next_url", "/")
+        print(next_url)
         if post_form.is_valid():
             post = post_form.save(commit=False)
             post.user = request.user
             post.save()
-            return redirect(next_url)
+            return redirect('next_url')
         else:
             return public(request, post_form)
     return redirect('/')
