@@ -1,9 +1,11 @@
 # Gram 
+
 ### Live Link => [pythonanywhere](http://muthanga.pythonanywhere.com/)
 
-## 
 
-## **Shem Muthanga Kariuki**
+##  By **Shem Muthanga Kariuki**
+Personal Github link=> [Shem Muthanga](https://github.com/muthangashem)
+
 
 ## Description
 An Instagram Clone. Probably better than Insta.gram
@@ -37,5 +39,5 @@ Technology used were
 Contact us on either of our github accounts
  [muthangashem](https://github.com/muthangashem).
 
-copyright (c) 2018 Shem [Muthanga](https://github.com/muthangashem)
+copyright (c) 2018 [Shem Muthanga](https://github.com/muthangashem)
 MIT Licence.
