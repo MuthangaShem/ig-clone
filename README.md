@@ -3,10 +3,6 @@
 Live Link => [pythonanywhere](http://muthanga.pythonanywhere.com/)
 
 
-##  By **Shem Muthanga Kariuki**
-Personal Github link=> [Shem Muthanga](https://github.com/muthangashem)
-
-
 ## Description
 An Instagram Clone. Probably better than Insta.gram
 
